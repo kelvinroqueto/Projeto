@@ -39,7 +39,7 @@
 </tr>
 </thead>
 <tbody>
-@foreach($users as $user)
+@foreach($usuario as $user)
 <tr>
 <td>{{ $user->id }}</td>
 <td>{{ $user->cpf }}</td>

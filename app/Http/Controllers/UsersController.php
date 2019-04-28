@@ -10,7 +10,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
-use App\Services\userService; 
+use App\Services\UserService; 
 
 /**
  * Class UsersController.
@@ -40,7 +40,7 @@ class UsersController extends Controller
     {
         $users = $this->repository->all();
 
-        return view('user.index', ['users' => $users]);
+        return view('user.index', ['usuario' => $users]);
     }
 
     /**
@@ -66,7 +66,7 @@ class UsersController extends Controller
       else{
       $usuario = null;
       }      
-          return view('user.index', ['usuario => $usuario']);
+          return $this->index();
     }
 
     /**

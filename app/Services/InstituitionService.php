@@ -1,8 +1,10 @@
 <?php
+nameSpace App\Services;
 use App\Repositories\InstituitionRepository;
 use App\Validators\InstituitionValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
 
-nameSpace App\Services;
+
 
 class InstituitionService{
 

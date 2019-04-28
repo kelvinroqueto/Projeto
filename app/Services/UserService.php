@@ -4,9 +4,7 @@ namespace App\Services;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use Illuminate\Database\QueryException;
-use Prettus\Validator\Exceptions\ValidatorException;
-        use Exception;
+
 
 
 class UserService{

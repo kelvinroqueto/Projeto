@@ -23,5 +23,48 @@
 @include ('templates.formularios.submit', ['input' => 'Cadastrar'])
 {!! Form::close() !!}
 
+<table class="default-table">
+<thead>
+<tr>
+<td>#</td>
+<td>CPF</td>
+<td>Nome</td>
+<td>Telefone</td>
+<td>Data Nasc.</td>
+<td>E-mail</td>
+<td>Status</td>
+<td>Permissão</td>
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+
+</tr>
+<tr>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+<td>teste</td>
+
+</tr>
+</tbody>
+
+
+
+</table>
+
 @endsection
 

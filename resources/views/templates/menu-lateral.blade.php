@@ -3,7 +3,7 @@
         <li>
             <a href="{{ route('user.index')}}">
                 <i class="fas fa-pizza-slice"></i></i>
-                <h3>Pratos</h3>
+                <h3>Usuário</h3>
             </a>
         </li>
                 <li>

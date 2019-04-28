@@ -7,4 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-Neste primeiro projeto foi desenvolvido com a linguagem PHP e framework Laravel um sistema de Investimento, a principio um simples projeto apenas COM CRUD com uma básica regra de negócio, Sistema de login com encriptação de senha que pode ser alterado para FALSE na variável  HASH_AUT no arquivo .ENV para que pare de encriptar. 
+Neste primeiro projeto foi desenvolvido com a linguagem PHP e framework Laravel um sistema de Investimento, a principio um simples projeto apenas COM CRUD com uma básica regra de negócio, Sistema de login com encriptação de senha que pode ser alterado para FALSE na variável  PASSWORD_HASH no arquivo .ENV para que pare de encriptar quando em desenvolvimento. 
+   
+Foram utilizados os seguintes recursos:
+
+Pacote Lavel 5 REPOSITORY (Camada de repositório que trabalha entre a camada model e controller com refeatures que facilitam a manipulação dos dados)
+HTML COLLECTIVE (Trabalhado nos arquivos blade para a criação dos Forms)
+Mutator para formatação de dados 

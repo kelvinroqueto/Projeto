@@ -7,9 +7,9 @@
             </a>
         </li>
                 <li>
-            <a href="">
+            <a href="{{ route('instituition.index') }}">
                 <i class="fas fa-utensils"></i>
-                <h3>Restaurantes</h3>
+                <h3>Instituições</h3>
             </a>
         </li>
     </ul>

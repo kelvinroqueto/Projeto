@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/user/dashboard.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/public/css/stylesheet.css</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/user/login.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Http/Controllers/UsersController.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/templates/formularios/input.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Validators/UserValidator.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Http/Requests/UserUpdateRequest.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Http/Controllers/Controller.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/database/migrations/2019_04_06_200623_create_user_socials_table.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/templates/menu-lateral.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/templates/formularios/submit.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Entities/User.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/user/index.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Http/Requests/UserCreateRequest.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/database/migrations/2019_04_06_172315_create_users_table.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Http/Controllers/DashboardController.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/templates/formularios/password.blade.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/app/Services/UserService.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/routes/web.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/routes/api.php</file>
+            <file>file:/C:/Users/kelvi/Desktop/Projeto/resources/views/templates/master.blade.php</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,229 @@
+*{
+ padding:0;
+ margin:0;
+ list-style: none;
+ outline: none;
+ border:none;
+ 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -box-sizing: border-box;
+    
+}
+
+body{
+    background-color: #f9f9f9;
+}
+
+
+form.form-padrao{
+    
+    float: left;
+    width: 100%;
+}
+form.form-padrao label{
+    
+    float: left;
+    width: 49%;
+    height: 60px;
+    padding: 7px 15px;
+    border: 1px solid #e9e9e9;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+form.form-padrao label:nth-last-of-type(odd){
+    margin-left: 2%;
+}
+
+form.form-padrao label span{
+    float: left;
+    width:100%;
+    font: 400 .75em 'Arial';
+    color: #c7c7c7;
+    padding-bottom: 5px;
+    
+}
+form.form-padrao label input{
+    float: left;
+    width:100%;
+    font: 400 .75em 'Arial';
+    color: #5c5c5c;
+   background: transparent;
+    
+}
+form.form-padrao label.submit{
+background: #007bff;
+border-color: #0062cc;
+}
+
+form.form-padrao label.submit input{
+font-weight:800;
+text-transform: uppercase;
+line-height: 50px;
+color: #f9f9f9;
+}
+
+/*
+Conteudo-view
+
+=============
+Conteudo
+
+=============
+
+*/
+
+#view-conteudo{
+    position: fixed;
+    flaot: left;
+    width:1 100;;
+    height: 100%;
+    padding: 20px 20px 20px 240px;
+    z-index: 1;
+}
+
+
+/*
+Conteudo-view
+
+=============
+Login page
+
+=============
+
+*/
+
+div.background{
+    
+    position: absolute;
+    left:0;
+    width: calc(100% - 300px);
+    height: 100%;
+    background-image: url(../assets/images/background.jpg);
+    background-size: cover;
+}
+
+section#conteudo-view{
+    position: absolute;
+    padding: 20px;
+    right: 0;
+    float: right;
+    width: 300px;
+    height: 100%;
+    background-color: #a1cbef;
+    
+}
+
+section#conteudo-view h1{
+
+    font: 2em 'Fredoka One', cursive;
+    color: #f3f3f3;
+    float:left;
+    width:100%;
+    margin-top: 50px;
+}
+
+section#conteudo-view h3, p{
+ font: .8em 'Fredoka One', cursive;
+    color: #f3f3f3;
+    float:left;
+    width:100%;
+    
+}
+
+
+
+section#conteudo-view form p {
+
+    font-size: 1.25em;
+     margin-top: 40px;
+     
+}
+
+section#conteudo-view form label {
+    float:left;
+    width:100%;
+    margin-bottom: 10px;
+    
+}
+section#conteudo-view form{
+    margin-top: 40px;
+}
+section#conteudo-view form input[type="submit"],
+section#conteudo-view form label input{
+        float:left;
+    width:100%;
+    height: 40px;
+    
+    padding: 0 20x;
+    border-radius: 20px;
+    border: 2px solid #F1F5F8;
+    color: #959595;
+    font: 1em 'Arial';
+
+    
+}
+section#conteudo-view form input[type="submit"]{
+background: #0056b3;
+text-align: center;
+width:60%;
+float:right;
+font: 1em 'Fredoka One', cursive;
+color:f9f9f9;
+    
+}
+
+/*
+Conteudo-view
+
+=============
+menu-lateral
+
+=============
+
+*/
+
+#principal{
+    position: fixed;
+    float:left;
+    width: 220px;
+    height: 100%;
+    border-right:  1x solid #e9e9e9;
+    box-shadow:  0 0 15px rgba(0,0,0,.15);
+    background-color:white;
+    z-index: 5;
+}
+#principal ul, 
+#principal ul li{
+float: left;
+width: 100%;
+}
+#principal ul li a{
+float: left;
+width: 100%;
+height:80px;
+color: #0056b3;
+border-bottom: 1px solid #e9e9e9;
+}
+#principal ul li a i {
+float: left;
+width: 80px;
+height:80px;
+color:inherit;
+text-align:center;
+line-height: 80px;
+font-size:2em;
+}
+#principal ul li a h3 {
+float: left;
+width: 80px;
+height:80px;
+font: 1.25em/80px 'Fredoka One', cursive;
+color: #0056b3;
+color:inherit;
+}
+#principal ul li a:hover {
+
+color: #959595;
+}

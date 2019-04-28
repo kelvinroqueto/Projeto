@@ -16,3 +16,4 @@ Neste primeiro projeto foi desenvolvido com a linguagem PHP e framework Laravel 
 <br>
 <h1>Recursos</h1>
 <p>Mutator para formatação de dados </p>
+<p> Bcripty para encriptação </p>

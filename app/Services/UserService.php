@@ -41,8 +41,21 @@ class UserService{
     public function update(){
         
     }
-    public function delete(){
-        
+    public function destroy($user_id){
+        try{
+            //pegando array de dados que foi passada por parameto data, se for verdadeira faz insercao do usuario 
+           
+               $this->repository->delete($user_id);
+            
+            return [
+    'success' => true,
+'messages' => "Usuário removido.",
+                    'data' =>null];
+        } catch (Exception $ex) {
+
+                       
+       $ex->getMessage();
+        } 
     }
 }
 

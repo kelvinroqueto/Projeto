@@ -60,7 +60,7 @@ return substr($cpf,0,3) . '.' . substr($cpf,3,3) . '.' . substr($cpf,7,3) . '-' 
      if (count($birth) != 3){
          return null;
      }else{
-$birth = $birth[2]  . '/' . $birth[1] . '/' . $birth[0] . '/';
+$birth = $birth[2]  . '/' . $birth[1] . '/' . $birth[0];
 return $birth;
      }
        

@@ -26,7 +26,7 @@
 <table class="default-table">
 <thead>
 <tr>
-<td>#</td>
+<td>ID</td>
 <td>CPF</td>
 <td>Nome</td>
 <td>Telefone</td>
@@ -34,6 +34,7 @@
 <td>E-mail</td>
 <td>Status</td>
 <td>Permissão</td>
+<td> MENU</td>
 
 </tr>
 </thead>
@@ -48,7 +49,10 @@
 <td>{{ $user->email }}</td>
 <td>{{ $user->status }}</td>
 <td>{{ $user->permission }}</td>
-
+<td>{!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!} 
+{!! Form::submit('Remover') !!}
+{!! Form::close() !!} 
+</td>
 </tr>
 @endforeach
 </tbody>

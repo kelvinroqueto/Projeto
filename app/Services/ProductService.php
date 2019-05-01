@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Services;
-use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
+use App\Repositories\ProductRepository;
+use App\Validators\ProductValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 
 
 
-class UserService{
+class ProductService{
    private  $repository;
     private $validator;
 
-    public function __construct(UserRepository $repository, UserValidator $validator ) {
+    public function __construct(ProductRepository $repository, ProductValidator $validator ) {
         //quem vai gerenciar o User em aspecto de banco de dados e o repository
         
     $this->repository = $repository;
@@ -23,12 +23,12 @@ class UserService{
             //pegando array de dados que foi passada por parameto data, se for verdadeira faz insercao do usuario 
                $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
                
-            $usuario = $this->repository->create($data);
+            $product = $this->repository->create($data);
             
             return [
     'success' => true,
-'messages' => "Usuário cadastrado.",
-                    'data' => $usuario];
+'messages' => "Produto cadastrado.",
+                    'data' => $product];
         } catch(Exception $e){
       
             switch(get_class($e)){
@@ -41,37 +41,15 @@ class UserService{
                 }
         
     }
-    public function update($data, $id){
-        try{
-            //pegando array de dados que foi passada por parameto data, se for verdadeira faz insercao do usuario 
-               $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
-               
-            $usuario = $this->repository->update($data, $id);
-            
-            return [
-    'success' => true,
-'messages' => "Usuário atualizado.",
-                    'data' => $usuario];
-        } catch(Exception $e){
-      
-            switch(get_class($e)){
-                case QueryException::class : return ['success' => false, 'messages' => $e->getMessage()];
-                case ValitadorException::class : return ['success' => false, 'messages' => $e->getMessageBag()];
-                case Exception::class : return ['success' => false, 'messages' => $e->getMessage()];
-                default : return ['success' => false, 'messages' => $e->getMessage()];
-            }
-            
-                }
-    }
-    public function destroy($user_id){
+    public function destroy($product_id){
         try{
             //pegando array de dados que foi passada por parameto data, se for verdadeira faz insercao do usuario 
            
-               $this->repository->delete($user_id);
+            $request = $this->repository->delete($product_id);
             
             return [
     'success' => true,
-'messages' => "Usuário removido.",
+'messages' => "Produto removido.",
                     'data' =>null];
         } catch (Exception $ex) {
 
@@ -80,5 +58,3 @@ class UserService{
         } 
     }
 }
-
-?>

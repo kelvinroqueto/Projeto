@@ -103,7 +103,7 @@ session()->flash('success', [
     {
         $institution = $this->repository->find($id);
 
-        return view('institutions.edit', compact('institution'));
+        return view('institutions.edit', ['institution' => $institution]);
     }
 
     /**
@@ -118,35 +118,13 @@ session()->flash('success', [
      */
     public function update(InstitutionUpdateRequest $request, $id)
     {
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $institution = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Institution updated.',
-                'data'    => $institution->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        $request = $this->service->update($request->all(), $id);
+        $institution = $request['success'] ? $request['data'] : null;
+        session()->flash('success', [
+            'success' => $request['success'],
+            'messages' => $request['messages']
+            ]);
+            return redirect()->route('institution.index');
     }
 
 

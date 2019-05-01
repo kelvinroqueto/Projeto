@@ -42,6 +42,27 @@ switch(get_class($e)){
 
     }
 
+}
+public function update($data, $id){
+
+    try{
+    $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+
+    $group = $this->repository->update($data, $id);
+    return [
+        'success'       => true,
+        'messages'      => "Grupo atualizado.",
+        'data'          => $group];
+    }catch(Exception $e){
+      
+switch(get_class($e)){
+    case QueryException::class : return ['success' => false, 'messages' => $e->getMessage()];
+    case ValitadorException::class : return ['success' => false, 'messages' => $e->getMessageBag()];
+    case Exception::class : return ['success' => false, 'messages' => $e->getMessage()];
+    default : return ['success' => false, 'messages' => $e->getMessage()];
+}
+
+    }
 
 }
 public function userStore($group_id, $data){

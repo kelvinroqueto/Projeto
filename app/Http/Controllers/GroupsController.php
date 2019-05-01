@@ -128,7 +128,11 @@ session()->flash('success', [
      */
     public function edit($id)
     {
+ $group = $this->repository->find($id);
+ $user_list        = $this->userRepository->selectBoxList();
+ $institution_list = $this->institutionRepository->selectBoxList();
 
+ return view ('group.edit', ['group' => $group, 'user_list' => $user_list, 'institution_list' => $institution_list]);
     }
 
     /**
@@ -141,37 +145,15 @@ session()->flash('success', [
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(GroupUpdateRequest $request, $id)
+    public function update(Request $request, $group_id)
     {
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $group = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Group updated.',
-                'data'    => $group->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        $request = $this->service->update($request->all(), $group_id);
+        $group = $request['success'] ? $request['data'] : null;
+        session()->flash('success', [
+            'success' => $request['success'],
+            'messages' => $request['messages']
+            ]);
+            return redirect()->route('group.index');
     }
 
 

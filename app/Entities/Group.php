@@ -35,4 +35,8 @@ class Group extends Model implements Transformable
         return $this->belongsTo(Institution::class);
     }
 
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
 }

@@ -20,6 +20,20 @@ class Moviment extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['product_id',
+   'user_id',
+    'group_id',
+    'value',
+    'type'];
 
+    public function user(){
+        return $this->belongsTo(User::class);
+
+    }
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
+    public function group(){
+        return $this->belongsTo(Group::class);
+    }
 }

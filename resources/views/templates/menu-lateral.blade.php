@@ -19,5 +19,11 @@
                 <h3>Grupos</h3>
             </a>
         </li>
+        <li>
+            <a href="{{ route('moviments.index') }}">
+                <i class="fas fa-users"></i>
+                <h3>Grupos</h3>
+            </a>
+        </li>
     </ul>
 </nav>

@@ -20,14 +20,19 @@ class Group extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name','user_id','instituition_id'];
+    protected $fillable = ['name','user_id','institution_id'];
 
-    // a classe grupo pertence ao usuario atraves do metodo owner
-    public function owner(){
+    // a classe grupo pertence ao usuario atraves do metodo owner 
+    // um para muitos (pertence)
+    public function user(){
         return $this->belongsTo(User::class);
     }
-    public function instituition(){
-        return $this->belongTo(Instituition::class);
+    public function users(){
+        return $this->belongsToMany(User::Class, 'user_groups');
+    }
+
+    public function institution(){
+        return $this->belongsTo(Institution::class);
     }
 
 }

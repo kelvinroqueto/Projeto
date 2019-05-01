@@ -7,37 +7,37 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\InstituitionCreateRequest;
-use App\Http\Requests\InstituitionUpdateRequest;
-use App\Repositories\InstituitionRepository;
-use App\Validators\InstituitionValidator;
-use App\Services\InstituitionService;
+use App\Http\Requests\InstitutionCreateRequest;
+use App\Http\Requests\InstitutionUpdateRequest;
+use App\Repositories\InstitutionRepository;
+use App\Validators\InstitutionValidator;
+use App\Services\InstitutionService;
 
 /**
- * Class InstituitionsController.
+ * Class InstitutionsController.
  *
  * @package namespace App\Http\Controllers;
  */
-class InstituitionsController extends Controller
+class InstitutionsController extends Controller
 {
     /**
-     * @var InstituitionRepository
+     * @var InstitutionRepository
      */
     protected $repository;
 
     /**
-     * @var InstituitionValidator
+     * @var InstitutionValidator
      */
     protected $validator;
     protected $service; 
 
     /**
-     * InstituitionsController constructor.
+     * InstitutionsController constructor.
      *
-     * @param InstituitionRepository $repository
-     * @param InstituitionValidator $validator
+     * @param InstitutionRepository $repository
+     * @param InstitutionValidator $validator
      */
-    public function __construct(InstituitionRepository $repository, InstituitionValidator $validator, InstituitionService $service)
+    public function __construct(InstitutionRepository $repository, InstitutionValidator $validator, InstitutionService $service)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -51,29 +51,29 @@ class InstituitionsController extends Controller
      */
     public function index()
     {
-    $instituitions = $this->repository->all();
+    $institutions = $this->repository->all();
 
-        return view('instituitions.index', ['instituition' => $instituitions]);
+        return view('institutions.index', ['institution' => $institutions]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  InstituitionCreateRequest $request
+     * @param  InstitutionCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(InstituitionCreateRequest $request)
+    public function store(InstitutionCreateRequest $request)
     {
 $request = $this->service->store($request->all());
-$instituition = $request['success'] ? $request['data'] : null;
+$institution = $request['success'] ? $request['data'] : null;
 session()->flash('success', [
     'success' => $request['success'],
     'messages' => $request['messages']
     ]);
-    return redirect()->route('instituition.index');
+    return redirect()->route('institution.index');
     }
 
     /**
@@ -85,16 +85,11 @@ session()->flash('success', [
      */
     public function show($id)
     {
-        $instituition = $this->repository->find($id);
+        $institution = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+  
 
-            return response()->json([
-                'data' => $instituition,
-            ]);
-        }
-
-        return view('instituitions.show', compact('instituition'));
+        return view('institutions.show', ['institution' => $institution]);
     }
 
     /**
@@ -106,32 +101,32 @@ session()->flash('success', [
      */
     public function edit($id)
     {
-        $instituition = $this->repository->find($id);
+        $institution = $this->repository->find($id);
 
-        return view('instituitions.edit', compact('instituition'));
+        return view('institutions.edit', compact('institution'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  InstituitionUpdateRequest $request
+     * @param  InstitutionUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(InstituitionUpdateRequest $request, $id)
+    public function update(InstitutionUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $instituition = $this->repository->update($request->all(), $id);
+            $institution = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Instituition updated.',
-                'data'    => $instituition->toArray(),
+                'message' => 'Institution updated.',
+                'data'    => $institution->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -166,14 +161,7 @@ session()->flash('success', [
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
 
-            return response()->json([
-                'message' => 'Instituition deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Instituition deleted.');
+        return redirect()->route('institution.index');
     }
 }

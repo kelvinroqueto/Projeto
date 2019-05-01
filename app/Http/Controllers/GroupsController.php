@@ -11,6 +11,9 @@ use App\Http\Requests\GroupCreateRequest;
 use App\Http\Requests\GroupUpdateRequest;
 use App\Repositories\GroupRepository;
 use App\Validators\GroupValidator;
+use App\Services\GroupService;
+use App\Repositories\InstitutionRepository;
+use App\Repositories\UserRepository;
 
 /**
  * Class GroupsController.
@@ -29,16 +32,25 @@ class GroupsController extends Controller
      */
     protected $validator;
 
+    protected $service;
+
+    protected $institutionRepository;
+
+    protected $userRepository;
+
     /**
      * GroupsController constructor.
      *
      * @param GroupRepository $repository
      * @param GroupValidator $validator
      */
-    public function __construct(GroupRepository $repository, GroupValidator $validator)
+    public function __construct(GroupRepository $repository, GroupValidator $validator, GroupService $service, InstitutionRepository $institutionRepository, UserRepository $userRepository)
     {
-        $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->repository               = $repository;
+        $this->validator                = $validator;
+        $this->service                  = $service;
+        $this->institutionRepository    = $institutionRepository;
+        $this->userRepository           = $userRepository;
     }
 
     /**
@@ -48,17 +60,16 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $groups = $this->repository->all();
+       
+        $groups           = $this->repository->all();
+        $user_list        = $this->userRepository->selectBoxList();
+        $institution_list = $this->institutionRepository->selectBoxList();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $groups,
-            ]);
-        }
-
-        return view('groups.index', compact('groups'));
+        return view('group.index', [
+        'groups' => $groups,
+        'user_list' => $user_list,
+        'institution_list' => $institution_list
+        ]);
     }
 
     /**
@@ -72,35 +83,25 @@ class GroupsController extends Controller
      */
     public function store(GroupCreateRequest $request)
     {
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $group = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Group created.',
-                'data'    => $group->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        $request = $this->service->store($request->all());
+$group = $request['success'] ? $request['data'] : null;
+session()->flash('success', [
+    'success' => $request['success'],
+    'messages' => $request['messages']
+    ]);
+    return redirect()->route('group.index');
     }
 
+
+    public function userStore(Request $request, $group_id){
+        $request = $this->service->userStore($group_id,$request->all());
+    
+        session()->flash('success', [
+            'success' => $request['success'],
+            'messages' => $request['messages']
+            ]);
+            return redirect()->route('group.show', [$group_id]); 
+    }
     /**
      * Display the specified resource.
      *
@@ -111,15 +112,11 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = $this->repository->find($id);
+        $user_list        = $this->userRepository->selectBoxList();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $group,
-            ]);
-        }
-
-        return view('groups.show', compact('group'));
+        return view('group.show', ['group'          => $group,
+                                   'user_list'      => $user_list                                      
+        ]);
     }
 
     /**
@@ -131,9 +128,7 @@ class GroupsController extends Controller
      */
     public function edit($id)
     {
-        $group = $this->repository->find($id);
 
-        return view('groups.edit', compact('group'));
     }
 
     /**
@@ -191,14 +186,8 @@ class GroupsController extends Controller
     {
         $deleted = $this->repository->delete($id);
 
-        if (request()->wantsJson()) {
 
-            return response()->json([
-                'message' => 'Group deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
 
-        return redirect()->back()->with('message', 'Group deleted.');
+        return redirect()->route('group.index');
     }
 }

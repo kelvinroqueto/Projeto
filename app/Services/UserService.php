@@ -29,11 +29,16 @@ class UserService{
     'success' => true,
 'messages' => "Usuário cadastrado.",
                     'data' => $usuario];
-        } catch (Exception $ex) {
-
-                       
-       $ex->getMessage();
-        }
+        } catch(Exception $e){
+      
+            switch(get_class($e)){
+                case QueryException::class : return ['success' => false, 'messages' => $e->getMessage()];
+                case ValitadorException::class : return ['success' => false, 'messages' => $e->getMessageBag()];
+                case Exception::class : return ['success' => false, 'messages' => $e->getMessage()];
+                default : return ['success' => false, 'messages' => $e->getMessage()];
+            }
+            
+                }
         
     }
     public function update(){

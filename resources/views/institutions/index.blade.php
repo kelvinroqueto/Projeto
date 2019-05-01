@@ -10,7 +10,7 @@
 @if(session('success'))
 <h3>{{session('success')['messages']}}</h3>
 @endif
-{!! Form::open(['route' => 'instituition.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
+{!! Form::open(['route' => 'institution.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
 @include ('templates.formularios.input',['label' => 'Nome', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
 @include ('templates.formularios.submit', ['input' => 'Cadastrar'])
 {!! Form::close() !!}
@@ -25,13 +25,14 @@
 </thead>
 
 <tbody>
-@foreach($instituition as $inst)
+@foreach($institution as $inst)
 <tr>
 <td>{{ $inst->id }} </td>
 <td>{{ $inst->name }} </td>
-<td>{!! Form::open(['route' => ['instituition.destroy', $inst->id], 'method' => 'delete']) !!}
+<td>{!! Form::open(['route' => ['institution.destroy', $inst->id], 'method' => 'delete']) !!}
 {!! Form::submit("Remover") !!}
 {!! Form::close() !!}
+<a href="{{ route('institution.show', $inst->id) }}">Detalhes</a>
 </td>
 </tr>
 @endforeach

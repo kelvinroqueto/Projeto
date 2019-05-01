@@ -19,7 +19,7 @@ class CreateUserSocialsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('social_network');
             $table->string('social_id');
-            $table->string('social_email');
+            $table->string('social_email')->unique();
              $table->string('social_avatar');
             $table->timestamps();
             

@@ -18,9 +18,8 @@ use SoftDeletes;
      *
      * @var array
      */
-
+protected $table = "users";
 public $timestamps = true;
-protected $table    = 'users';
 
     protected $fillable = [
         'cpf', 'name', 'phone','birth','gender','notes','email','password','status','permission'
@@ -35,7 +34,9 @@ protected $table    = 'users';
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function groups(){
+        return $this->belongsToMany(Group::Class, 'user_groups');
+    }
     /**
      * The attributes that should be cast to native types.
      *
@@ -45,16 +46,16 @@ protected $table    = 'users';
      $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value;
      }
 
-     public function getCpfAttribute(){
+     public function getFormattedCpfAttribute(){
 $cpf = $this->attributes['cpf'];
 
 return substr($cpf,0,3) . '.' . substr($cpf,3,3) . '.' . substr($cpf,7,3) . '-' . substr($cpf,-2);
      }
-     public function getPhoneAttribute(){
+     public function getFormattedPhoneAttribute(){
          $phone = $this->attributes['phone'];
          return "(" . substr($phone,0,2) . ") " . substr($phone,2,4) . "-" . substr($phone,-4) ;
      }
-     public function getBirthAttribute(){
+     public function getFormattedBirthAttribute(){
          
          $birth = explode('-', $this->attributes['birth']);
      if (count($birth) != 3){

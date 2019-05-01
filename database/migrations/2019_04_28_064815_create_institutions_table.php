@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateInstituitionsTable.
+ * Class CreateInstitutionsTable.
  */
-class CreateInstituitionsTable extends Migration
+class CreateInstitutionsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,10 +15,11 @@ class CreateInstituitionsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('instituitions', function(Blueprint $table) {
+		Schema::create('Institutions', function(Blueprint $table) {
             $table->increments('id');
 $table->string('name');
-            $table->timestamps();
+			$table->timestamps();
+			$table->softDeletes();	
 		});
 	}
 
@@ -29,6 +30,6 @@ $table->string('name');
 	 */
 	public function down()
 	{
-		Schema::drop('instituitions');
+		Schema::drop('Institutions');
 	}
 }

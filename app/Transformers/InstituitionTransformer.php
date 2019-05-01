@@ -3,23 +3,23 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Entities\Instituition;
+use App\Entities\Institution;
 
 /**
- * Class InstituitionTransformer.
+ * Class InstitutionTransformer.
  *
  * @package namespace App\Transformers;
  */
-class InstituitionTransformer extends TransformerAbstract
+class InstitutionTransformer extends TransformerAbstract
 {
     /**
-     * Transform the Instituition entity.
+     * Transform the Institution entity.
      *
-     * @param \App\Entities\Instituition $model
+     * @param \App\Entities\Institution $model
      *
      * @return array
      */
-    public function transform(Instituition $model)
+    public function transform(Institution $model)
     {
         return [
             'id'         => (int) $model->id,

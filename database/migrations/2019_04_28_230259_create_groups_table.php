@@ -19,13 +19,13 @@ class CreateGroupsTable extends Migration
 			$table->increments('id');
 			$table->string('name');
 			$table->unsignedInteger('user_id');
-			$table->unsignedInteger('instituition_id');
+			$table->unsignedInteger('institution_id');
 
 			$table->timestamps();
 			$table->softDeletes();
 
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('instituition')->references('id')->on('instituitions');
+			$table->foreign('institution_id')->references('id')->on('institutions');
 		});
 	}
 

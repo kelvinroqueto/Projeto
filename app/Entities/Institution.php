@@ -7,12 +7,14 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Instituition.
+ * Class Institution.
  *
  * @package namespace App\Entities;
  */
-class Instituition extends Model implements Transformable
+
+class Institution extends Model implements Transformable
 {
+
     use TransformableTrait;
 
     /**
@@ -22,4 +24,8 @@ class Instituition extends Model implements Transformable
      */
     protected $fillable = ['name'];
     public $timestamps = true;
+
+    public function groups(){
+        return $this->hasMany(Group::class);
+    }
 }

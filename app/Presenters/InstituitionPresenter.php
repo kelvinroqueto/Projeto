@@ -2,15 +2,15 @@
 
 namespace App\Presenters;
 
-use App\Transformers\InstituitionTransformer;
+use App\Transformers\InstitutionTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
- * Class InstituitionPresenter.
+ * Class InstitutionPresenter.
  *
  * @package namespace App\Presenters;
  */
-class InstituitionPresenter extends FractalPresenter
+class InstitutionPresenter extends FractalPresenter
 {
     /**
      * Transformer
@@ -19,6 +19,6 @@ class InstituitionPresenter extends FractalPresenter
      */
     public function getTransformer()
     {
-        return new InstituitionTransformer();
+        return new InstitutionTransformer();
     }
 }

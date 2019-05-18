@@ -24,6 +24,10 @@ class Group extends Model implements Transformable
 
     // a classe grupo pertence ao usuario atraves do metodo owner 
     // um para muitos (pertence)
+
+    public function getTotalValueAttribute(){
+return $this->moviments()->applications()->sum('value') - $this->moviments()->outflows()->sum('value');
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -37,6 +41,9 @@ class Group extends Model implements Transformable
 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+    public function moviments(){
+        return $this->hasMany(Moviment::class);
     }
 
 }

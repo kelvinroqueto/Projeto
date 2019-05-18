@@ -26,6 +26,19 @@ class Moviment extends Model implements Transformable
     'value',
     'type'];
 
+    public function scopeProduct($query, $product){
+        return $query->where('product_id', $product->id);
+            }
+
+    public function scopeApplications($query){
+return $query->where('type', 1);
+    }
+
+    
+    public function scopeOutflows($query){
+        return $query->where('type', 2);
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
 
@@ -36,4 +49,5 @@ class Moviment extends Model implements Transformable
     public function group(){
         return $this->belongsTo(Group::class);
     }
+ 
 }

@@ -42,9 +42,14 @@ public $timestamps = true;
      *
      * @var array
      */
-     public function setPasswordAttribute($value){
-     $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value;
+
+     public function moviments(){
+         return $this->hasMany(Moviment::class);
      }
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value;
+    }
 
      public function getFormattedCpfAttribute(){
 $cpf = $this->attributes['cpf'];

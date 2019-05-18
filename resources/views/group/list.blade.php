@@ -5,6 +5,7 @@
 <td>Nome do grupo </td>
 <td>Instituição</td>
 <td>Nome do responsável</td>
+<td>Total</td>
 <td>Opções</td>
 </tr>
 </thead>
@@ -17,7 +18,7 @@
 
 <td> {{$group->institution->name }} </td>
     <td> {{ $group->user->name }} </td>
-
+    <td> R$ {{ number_format($group->total_value, 2, ',', '.') }} </td>
 
 
 <td>{!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'delete']) !!}
